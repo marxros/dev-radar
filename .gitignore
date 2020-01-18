@@ -1,0 +1,7 @@
+backend/node_modules
+web/node_modules
+mobile/node_modules
+
+backend/*.log
+web/*.log
+mobile/*.log
