@@ -1,9 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const http = require('http');
+
 const routes = require('./routes');
+const { setupWebsocket } = require('./websocket');
 
 const app = express();
+const server = http.Server(app);
+
+setupWebsocket(server);
 
 mongoose.connect('mongodb+srv://omnistack:omnistack@omnistack10-bl2si.mongodb.net/omnistack10?retryWrites=true&w=majority', {
   useNewUrlParser: true,
@@ -16,6 +22,6 @@ app.use(express.json());
 app.use(routes);
 
 
-app.listen(3333, () => {
+server.listen(3333, () => {
   console.log('Server started on port 3333')
 });
